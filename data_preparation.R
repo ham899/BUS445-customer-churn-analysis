@@ -7,7 +7,6 @@
 # Outputs cleaned versions of each dataset and consolidates them into a single 
 # table ready for exploratory analysis and modelling.
 # ------------------------------------------------------------------------------
-
 # ------------------------------- Setup ----------------------------------------
 # Load Packages and Functions
 library(tidyverse)
@@ -20,7 +19,6 @@ underscore_spaces_colnames <- function(df) {
 }
 
 # ------------------------------MAIN SCRIPT ------------------------------------
-
 # Read in the files and save copies of the raw data
 Demographics_original <- read_csv("Telco Customer Data/Telco_customer_churn_demographics.csv")
 Location_original <- read_csv("Telco Customer Data/Telco_customer_churn_location.csv")
@@ -75,7 +73,6 @@ Status <- mutate(Status,
                  Quarter = as.factor(Quarter), 
                  Customer_Status = as.factor(Customer_Status), 
                  Churn_Label = as.factor(Churn_Label), 
-                 Churn_Category = as.factor(Churn_Category)
                  )
 
 ### Imputation
@@ -87,7 +84,7 @@ nrow(filter(filter(Status, Churn_Value == 1), is.na(Churn_Reason))) == 0
 # Since churned customers always provide a reason, we can impute the missing 
 # values in `churn_Category` and `Churn_Reason` with the string "Did Not Churn"
 Status <- mutate(Status, 
-                 Churn_Category = ifelse(is.na(Churn_Category), "Did Not Churn", Churn_Category), 
+                 Churn_Category = as.factor(ifelse(is.na(Churn_Category), "Did Not Churn", Churn_Category)), 
                  Churn_Reason = ifelse(is.na(Churn_Reason), "Did Not Churn", Churn_Reason)
                  )
 
@@ -97,12 +94,12 @@ Demographics <- mutate(Demographics, Age_Range = binVariable(Age, bins = 6, meth
   select(Customer_ID:Age, Age_Range, Married:Number_of_Dependents)
 # Senior Variable
 Demographics <- mutate(Demographics, 
-                       Age_Category = binVariable(Demographics$Age, 
+                       Age_Category = as.factor(binVariable(Demographics$Age, 
                                                   bins = 3, 
                                                   method = c("intervals"), 
                                                   labels = c("19-39", "40-59", "60-80")
-                                                  ), 
-                       Senior = ifelse(Age >= 65, 1, 0)
+                                                  )), 
+                       Senior = as.factor(ifelse(Age >= 65, 1, 0))
                        )
 # Add City to Population dataset
 Population <- Population %>% left_join(select(Location, Zip_Code, City), by = "Zip_Code") %>% 
