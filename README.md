@@ -5,7 +5,7 @@
 
 This project was a group project completed in the Simon Fraser University course **BUS445: Customer Analytics**. I have anonymized all other group members’ contributions to respect their privacy. All uploaded scripts are my own work; however, the uploaded slides are primarily the work of another group member.
 
-We were provided five datasets containing key information for the fictional Californian telecommunications company **CaliConnect**. We think our professor likely obtained these datasets from [Kaggle](https://www.kaggle.com/, but since we are not sure, the datasets are not provided in this repository. The datasets were as follows:
+We were provided five datasets containing key information for the fictional Californian telecommunications company **CaliConnect**. We think our professor likely obtained these datasets from [Kaggle](https://www.kaggle.com/), but since we are not sure, the datasets are not provided in this repository. The datasets were as follows:
 - **Demographics:** customer demographic information
 - **Location:** customer locations
 - **Population:** zip code populations  
