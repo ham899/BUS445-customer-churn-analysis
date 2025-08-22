@@ -56,7 +56,7 @@ Key findings:
 - **Competitors** were the leading churn reason due to having better devices or offers.  
 - **Geography:** Urban centers like **San Diego** show both large customer bases and high churn rates.  
 - **Internet type:** **Fiber Optic** customers churn more and report lower satisfaction than other types.  
-- **Tenure:** **New customers** (<= 12 months) were substantially more likely to churn than long-tenured customers.  
+- **Tenure:** **New customers** (≤ 12 months) were substantially more likely to churn than long-tenured customers.  
 - **Contracts:** **Month-to-month** contracts show higher churn than longer terms.  
 - **Add-ons:** **Online security** and **premium tech support** correlate with lower churn, while **paperless billing** and **higher monthly charges** correlate with higher churn.
 
