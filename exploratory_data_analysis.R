@@ -11,6 +11,7 @@
 # Load necessary packages
 library(tidyverse)
 library(car)
+library(mapdata)
 
 # Load the helper functions
 source("Helper Functions Scripts/utils_graphing.R")
@@ -245,6 +246,14 @@ pie(c(0.5038945, 0.1881366, 0.1815458, 0.1264230), c("Competitor", "Attitude" , 
     summarise(Count = n(), Proportion = Count / nrow(Status)))
 # 26.5% of customers churned in Q3 while only 6.45% just joined
 
+# Look at the separation regarding churn on the Satisfaction variable
+ggplot(Status, aes(as.factor(Satisfaction_Score), fill = Satisfaction_Level)) +
+  geom_bar() +
+  xlab("Satisfaction Score") +
+  ylab("Count") +
+  labs(fill = "Satisfaction Level") +
+  theme_classic()
+
 ## Notes based on preliminary analysis:
 # - If satisfaction score is known, it is an excellent indicator of whether a customer will stay or churn
 # - Higher CLTV (value) customers are slightly less likely to churn
@@ -268,3 +277,21 @@ SingleTable %>% arrange(desc(Total_Revenue)) %>%
          Online_Security, Contract, Payment_Method, Satisfaction_Score, 
          Total_Revenue) %>% head(20)
 # Examine patterns for which types of customers are bringing in the most revenue
+
+# Examine contract's effect on satisfaction
+ggplot(SingleTable, aes(Contract, Satisfaction_Score)) + stat_boxplot(geom = "errorbar") + geom_boxplot() + theme_classic()
+# Examine Internet_Type's effect on satisfaction
+ggplot(SingleTable, aes(Internet_Service, Satisfaction_Score)) + geom_boxplot() + theme_classic()
+# Examine Internet_Services's effect on satisfaction
+ggplot(SingleTable, aes(x=Internet_Service, fill = Satisfaction_Level)) + geom_bar() + theme_classic() + labs(x = "Internet Service", fill = "Satisfaction Level", y = "Count")
+# Examine contract's effect on satisfaction
+ggplot(SingleTable, aes(Internet_Type, Satisfaction_Score)) + stat_boxplot(geom = "errorbar") + geom_boxplot() + theme_classic()
+# # Examine Tenure's effect on satisfaction
+ggplot(SingleTable, aes(Tenure_in_Months, Satisfaction_Score)) + geom_point(position = "jitter") + geom_smooth(method = "lm", se = FALSE) + theme_classic()
+# Examine New_Customer's effect on satisfaction
+ggplot(SingleTable, aes(New_Customer, Satisfaction_Score)) + geom_boxplot() + theme_classic()
+# Examine Unlimited_Data's effect on satisfaction
+ggplot(SingleTable, aes(Unlimited_Data, Satisfaction_Score)) + geom_boxplot() + theme_classic()
+# Counts of Satisfaction Scores
+SingleTable %>% group_by(as.factor(Satisfaction_Score)) %>% summarize(Count = n())
+# Lowest count of 518 with Satisfaction Score of 2
