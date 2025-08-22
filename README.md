@@ -26,7 +26,7 @@ For a concise overview of our process and findings, see the uploaded **presentat
 
 Below are the scripts uploaded to this repository:
 - `data_preparation.R` – Prepares the data for analysis and modelling. This file is sourced by the other main scripts.  
-- `exploratory_data_analysis.R` – Explores each dataset and their variables’ relationships with customer churn.  
+- `exploratory_data_analysis.R` – Explores each dataset and the relationships between its variables and churn.  
 - `models.R` – Evaluates the performance and results of many different models for variable effects and churn prediction performance.  
 - **Helper Functions**
   - `BCA_functions_source_file.R` – A course-provided package to support the analytics we were learning in class. See [BCA package documentation](https://cran.r-project.org/web/packages/BCA/index.html) for more details.  
